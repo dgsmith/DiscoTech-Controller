@@ -53,32 +53,35 @@ int count = 0;
         check.position =            ccp(size.width/2, 20);
         [self addChild:check];
         
-        SneakyJoystickSkinnedBase *throttleJoy = [[[SneakyJoystickSkinnedBase alloc] init] autorelease];
+        SneakyJoystickSkinnedBase *throttleJoy = [[SneakyJoystickSkinnedBase alloc] init];
         throttleJoy.position =          ccp(130,size.height/2);
         throttleJoy.backgroundSprite =  [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:100];
         throttleJoy.thumbSprite =       [ColoredCircleSprite circleWithColor:ccc4(0, 0, 255, 200) radius:40];
-        throttleJoy.joystick =          [[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,100,100)];
+        throttleJoy.joystick =          [[[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,100,100)] autorelease];
         throttleJoystick = [throttleJoy.joystick retain];
         throttleJoystick.deadRadius = 10;
         throttleJoystick.hasDeadzone = YES;
         [self addChild:throttleJoy];
+        [throttleJoy release];
+        [throttleJoystick release];
         
-        
-        SneakyJoystickSkinnedBase *steeringJoy = [[[SneakyJoystickSkinnedBase alloc] init] autorelease];
+        SneakyJoystickSkinnedBase *steeringJoy = [[SneakyJoystickSkinnedBase alloc] init];
         steeringJoy.position =         ccp(400, 80);
         steeringJoy.backgroundSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:50];
         steeringJoy.thumbSprite =      [ColoredCircleSprite circleWithColor:ccc4(0, 0, 255, 200) radius:25];
-        steeringJoy.joystick =         [[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,50,50)];
+        steeringJoy.joystick =         [[[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,50,50)] autorelease];
         steeringJoystick.hasDeadzone = YES;
         steeringJoystick.deadRadius = 10;
         steeringJoystick = [steeringJoy.joystick retain];
         [self addChild:steeringJoy];
+        [steeringJoy release];
+        [steeringJoystick release];
         
         SneakyJoystickSkinnedBase *leftArmJoy = [[[SneakyJoystickSkinnedBase alloc] init] autorelease];
         leftArmJoy.position =           ccp(280, 270);
         leftArmJoy.backgroundSprite =   [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:32];
         leftArmJoy.thumbSprite =        [ColoredCircleSprite circleWithColor:ccc4(0, 0, 255, 200) radius:16];
-        leftArmJoy.joystick =           [[SneakyJoystick alloc] initWithRect:CGRectMake(0, 0, 32, 32)];
+        leftArmJoy.joystick =           [[[SneakyJoystick alloc] initWithRect:CGRectMake(0, 0, 32, 32)] autorelease];
         leftArmJoystick = [leftArmJoy.joystick retain];
         [self addChild:leftArmJoy];
         
@@ -86,7 +89,7 @@ int count = 0;
         rightArmJoy.position =           ccp(380, 270);
         rightArmJoy.backgroundSprite =   [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:32];
         rightArmJoy.thumbSprite =        [ColoredCircleSprite circleWithColor:ccc4(0, 0, 255, 200) radius:16];
-        rightArmJoy.joystick =           [[SneakyJoystick alloc] initWithRect:CGRectMake(0, 0, 32, 32)];
+        rightArmJoy.joystick =           [[[SneakyJoystick alloc] initWithRect:CGRectMake(0, 0, 32, 32)] autorelease];
         rightArmJoystick = [rightArmJoy.joystick retain];
         [self addChild:rightArmJoy];
         
@@ -95,7 +98,7 @@ int count = 0;
         ledBut.defaultSprite =      [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:32];
         //ledBut.activatedSprite =    [CCSprite spriteWithFile:@"p3.png"];
         ledBut.pressSprite =        [ColoredCircleSprite circleWithColor:ccc4(0, 255, 0, 128) radius:32];
-        ledBut.button =             [[SneakyButton alloc] initWithRect:CGRectMake(0, 0, 64, 64)];
+        ledBut.button =             [[[SneakyButton alloc] initWithRect:CGRectMake(0, 0, 64, 64)] autorelease];
         led = [ledBut.button retain];
         led.isToggleable = NO;
         led.isHoldable = YES;

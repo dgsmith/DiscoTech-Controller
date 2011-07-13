@@ -85,7 +85,7 @@ NSInteger alphabeticSort(id string1, id string2, void *reverse)
 	[bodyValues release];
 	[receivedData release];
 	[connection_ release];
-	[super dealloc];
+    [super dealloc];
 }
 
 
@@ -136,9 +136,9 @@ NSInteger alphabeticSort(id string1, id string2, void *reverse)
 	
 	// create the connection with the request
 	// and start loading the data
-	self.connection=[[NSURLConnection alloc] initWithRequest:post delegate:self];
+	self.connection=[[[NSURLConnection alloc] initWithRequest:post delegate:self] autorelease];
 	
-	if ( ! connection_)
+	if ( !connection_)
 		return NO;
 	
 	return YES;
