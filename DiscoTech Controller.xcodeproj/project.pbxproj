@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B118E3C13CE02910052E176 /* SendUDP.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B118E3A13CE02910052E176 /* SendUDP.c */; };
 		5BA0AF0813CCFB1C00F9F212 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA0AF0713CCFB1C00F9F212 /* QuartzCore.framework */; };
 		5BA0AF0A13CCFB1C00F9F212 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA0AF0913CCFB1C00F9F212 /* OpenGLES.framework */; };
 		5BA0AF0C13CCFB1C00F9F212 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA0AF0B13CCFB1C00F9F212 /* OpenAL.framework */; };
@@ -133,6 +134,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B118E3A13CE02910052E176 /* SendUDP.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SendUDP.c; sourceTree = "<group>"; };
+		5B118E3B13CE02910052E176 /* SendUDP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendUDP.h; sourceTree = "<group>"; };
 		5BA0AF0313CCFB1C00F9F212 /* DiscoTech Controller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiscoTech Controller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BA0AF0713CCFB1C00F9F212 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5BA0AF0913CCFB1C00F9F212 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -461,6 +464,8 @@
 		5BA0AF1813CCFB1C00F9F212 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5B118E3A13CE02910052E176 /* SendUDP.c */,
+				5B118E3B13CE02910052E176 /* SendUDP.h */,
 				5BA0B09113CD007300F9F212 /* ColoredCircleSprite.h */,
 				5BA0B09213CD007300F9F212 /* ColoredCircleSprite.m */,
 				5BAF270E13CDEEB3002C91F8 /* ColoredSquareSprite.h */,
@@ -970,6 +975,7 @@
 				5BA0B09013CCFF8400F9F212 /* SneakyButtonSkinnedBase.m in Sources */,
 				5BA0B09313CD007300F9F212 /* ColoredCircleSprite.m in Sources */,
 				5BAF271013CDEEB3002C91F8 /* ColoredSquareSprite.m in Sources */,
+				5B118E3C13CE02910052E176 /* SendUDP.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

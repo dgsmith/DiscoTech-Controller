@@ -15,6 +15,8 @@
 #import "ColoredCircleSprite.h"
 #import "ColoredSquareSprite.h"
 
+#import "SendUDP.h"
+
 @implementation RobotLayer
 int count = 0;
 +(CCScene *) scene
@@ -39,6 +41,9 @@ int count = 0;
     if (self) {        
         // ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
+        
+        NSString *ipAddress = @"192.168.1.102";
+        SUDP_Init([ipAddress cStringUsingEncoding:NSASCIIStringEncoding]);
         
         CCMenuItemFont *back = [CCMenuItemFont itemFromString:@"back" target:self selector:@selector(back:)];
         CCMenu *menu = [CCMenu menuWithItems:back, nil];
@@ -67,6 +72,8 @@ int count = 0;
         steeringJoy.backgroundSprite = [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:50];
         steeringJoy.thumbSprite =      [ColoredCircleSprite circleWithColor:ccc4(0, 0, 255, 200) radius:25];
         steeringJoy.joystick =         [[SneakyJoystick alloc] initWithRect:CGRectMake(0,0,50,50)];
+        steeringJoystick.hasDeadzone = YES;
+        steeringJoystick.deadRadius = 10;
         steeringJoystick = [steeringJoy.joystick retain];
         [self addChild:steeringJoy];
         
@@ -167,37 +174,54 @@ int count = 0;
         [self addChild:eyesRBut];
         */
 		[self scheduleUpdate];
-         
-        
     }
-    
-    
-    
     return self;
 }
 
 -(void) update: (ccTime) dt
 {
-    int t,p;
-    float ttemp, ptemp;
-    
+    int t,s;
+    float ttemp, stemp;
     ttemp = throttleJoystick.stickPosition.y;
     t = roundf(((ttemp + 100)*255)/200);
-    
-    ptemp = throttleJoystick.stickPosition.x;
-    p = roundf(((ptemp+100)*255)/200);
+    stemp = throttleJoystick.stickPosition.x;
+    s = roundf(((stemp+100)*255)/200);
     
     int h,v;
-    float h1, v1;
-    
-    h1 = steeringJoystick.stickPosition.x;
-    h = roundf(((h1+50)*255)/100);
-    
-    v1 = steeringJoystick.stickPosition.y;
-    v = roundf(((v1+50)*255)/100);
+    float htemp, vtemp;
+    htemp = steeringJoystick.stickPosition.x;
+    h = roundf(((htemp+50)*255)/100);
+    vtemp = steeringJoystick.stickPosition.y;
+    v = roundf(((vtemp+50)*255)/100);
         
+    int l,r;
+    float ltemp,rtemp;
+    ltemp = leftArmJoystick.stickPosition.y;
+    l = roundf(((ltemp+32)*255)/64);
+    rtemp = rightArmJoystick.stickPosition.y;
+    r = roundf(((rtemp+32)*255)/64);
     
-    check.string = [NSString stringWithFormat:@"throttle:%i, steering:%i, headH:%i, headV:%i",t,p,h,v];
+    int ledOn;
+    if (led.active) {
+        ledOn = 1;
+    } else {
+        ledOn = 0;
+    }
+    
+    data[0] = 'b';
+    data[1] = (unsigned char) t;
+    data[2] = (unsigned char) s;
+    data[3] = (unsigned char) h;
+    data[4] = (unsigned char) v;
+    data[5] = (unsigned char) l;
+    data[6] = (unsigned char) r;
+    data[7] = (unsigned char) 128;
+    data[8] = (unsigned char) ledOn;
+    data[9] = 'e';
+    
+    //check.string = [NSString stringWithCharacters:data length:10];
+    
+    SUDP_SendMsg(data, 10);
     
     /*
     if ((lArmUp.active && lArmDn.active) || (!lArmUp.active && !lArmDn.active)) {
@@ -235,15 +259,14 @@ int count = 0;
     } else {
         ledControl = @"000";
     }
-    
+    */
     
     [self schedule:@selector(updateRobot) interval:.3];
-     */
 }
 
 -(void) updateRobot
 {
-        
+    //SUDP_SendMsg(data, 10);
 }
 
 // on "dealloc" you need to release all your retained objects

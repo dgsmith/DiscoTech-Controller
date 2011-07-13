@@ -25,6 +25,7 @@
     
     CCLabelTTF *check;
     
+    unsigned char data[10];
 }
 
 -(void)back:(id)sender;
