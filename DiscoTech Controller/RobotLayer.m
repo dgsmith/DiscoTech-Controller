@@ -42,9 +42,6 @@ int count = 0;
         // ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
         
-        NSString *ipAddress = @"192.168.1.102";
-        SUDP_Init([ipAddress cStringUsingEncoding:NSASCIIStringEncoding]);
-        
         CCMenuItemFont *back = [CCMenuItemFont itemFromString:@"back" target:self selector:@selector(back:)];
         CCMenu *menu = [CCMenu menuWithItems:back, nil];
         menu.position = ccp(size.width/2, 50);
@@ -93,52 +90,6 @@ int count = 0;
         rightArmJoystick = [rightArmJoy.joystick retain];
         [self addChild:rightArmJoy];
         
-        /*
-        SneakyButtonSkinnedBase *lArmUpBut = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
-        lArmUpBut.position =        ccp(280, 125);
-        lArmUpBut.defaultSprite =   [CCSprite spriteWithFile:@"right2.png"];
-        //lArmUpBut.activatedSprite = [CCSprite spriteWithFile:@"right3.png"];
-        lArmUpBut.pressSprite =     [CCSprite spriteWithFile:@"right1.png"];
-        lArmUpBut.button =          [[SneakyButton alloc] initWithRect:CGRectMake(0, 0, 64, 64)];
-        lArmUp = [lArmUpBut.button retain];
-        lArmUp.isToggleable = NO;
-        lArmUp.isHoldable = YES;
-        [self addChild:lArmUpBut];
-        
-        SneakyButtonSkinnedBase *lArmDnBut = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
-        lArmDnBut.position =        ccp(225, 125);
-        lArmDnBut.defaultSprite =   [CCSprite spriteWithFile:@"left2.png"];
-        //lArmDnBut.activatedSprite = [CCSprite spriteWithFile:@"left3.png"];
-        lArmDnBut.pressSprite =     [CCSprite spriteWithFile:@"left1.png"];
-        lArmDnBut.button =          [[SneakyButton alloc] initWithRect:CGRectMake(0, 0, 64, 64)];
-        lArmDn = [lArmDnBut.button retain];
-        lArmDn.isToggleable = NO;
-        lArmDn.isHoldable = YES;
-        [self addChild:lArmDnBut];
-        
-        SneakyButtonSkinnedBase *rArmUpBut = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
-        rArmUpBut.position =        ccp(280, 90);
-        rArmUpBut.defaultSprite =   [CCSprite spriteWithFile:@"right2.png"];
-        //rArmUpBut.activatedSprite = [CCSprite spriteWithFile:@"right3.png"];
-        rArmUpBut.pressSprite =     [CCSprite spriteWithFile:@"right1.png"];
-        rArmUpBut.button =          [[SneakyButton alloc] initWithRect:CGRectMake(0, 0, 64, 64)];
-        rArmUp = [rArmUpBut.button retain];
-        rArmUp.isToggleable = NO;
-        rArmUp.isHoldable = YES;
-        [self addChild:rArmUpBut];
-        
-        SneakyButtonSkinnedBase *rArmDnBut = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
-        rArmDnBut.position =        ccp(225, 90);
-        rArmDnBut.defaultSprite =   [CCSprite spriteWithFile:@"left2.png"];
-        //rArmDnBut.activatedSprite = [CCSprite spriteWithFile:@"left3.png"];
-        rArmDnBut.pressSprite =     [CCSprite spriteWithFile:@"left1.png"];
-        rArmDnBut.button =          [[SneakyButton alloc] initWithRect:CGRectMake(0, 0, 64, 64)];
-        rArmDn = [rArmDnBut.button retain];
-        rArmDn.isToggleable = NO;
-        rArmDn.isHoldable = YES;
-        [self addChild:rArmDnBut];
-        */
-        
         SneakyButtonSkinnedBase *ledBut = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
         ledBut.position =           ccp(330, 190);
         ledBut.defaultSprite =      [ColoredCircleSprite circleWithColor:ccc4(255, 0, 0, 128) radius:32];
@@ -150,29 +101,6 @@ int count = 0;
         led.isHoldable = YES;
         [self addChild:ledBut];
         
-        /*
-        SneakyButtonSkinnedBase *eyesLBut = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
-        eyesLBut.position =         ccp(185,125);
-        eyesLBut.defaultSprite =    [CCSprite spriteWithFile:@"up2.png"];
-        //eyesLBut.activatedSprite =  [CCSprite spriteWithFile:@"up3.png"];
-        eyesLBut.pressSprite =      [CCSprite spriteWithFile:@"up1.png"];
-        eyesLBut.button =           [[SneakyButton alloc] initWithRect:CGRectMake(0, 0, 64, 64)];
-        eyesL = [eyesLBut.button retain];
-        eyesL.isToggleable = NO;
-        eyesL.isHoldable = YES;
-        [self addChild:eyesLBut];
-        
-        SneakyButtonSkinnedBase *eyesRBut = [[[SneakyButtonSkinnedBase alloc] init] autorelease];
-        eyesRBut.position =         ccp(185,50);
-        eyesRBut.defaultSprite =    [CCSprite spriteWithFile:@"down2.png"];
-        //eyesRBut.activatedSprite =  [CCSprite spriteWithFile:@"down3.png"];
-        eyesRBut.pressSprite =      [CCSprite spriteWithFile:@"down1.png"];
-        eyesRBut.button =           [[SneakyButton alloc] initWithRect:CGRectMake(0, 0, 64, 64)];
-        eyesR = [eyesRBut.button retain];
-        eyesR.isToggleable = NO;
-        eyesR.isHoldable = YES;
-        [self addChild:eyesRBut];
-        */
 		[self scheduleUpdate];
     }
     return self;
@@ -222,51 +150,6 @@ int count = 0;
     //check.string = [NSString stringWithCharacters:data length:10];
     
     SUDP_SendMsg(data, 10);
-    
-    /*
-    if ((lArmUp.active && lArmDn.active) || (!lArmUp.active && !lArmDn.active)) {
-        leftArm = @"001";
-    } else {
-        if (lArmUp.active) {
-            leftArm = @"002";
-        } else {
-            leftArm = @"000";
-        }
-    }
-    
-    if ((rArmUp.active && rArmDn.active) || (!rArmUp.active && !rArmDn.active)) {
-        rightArm = @"001";
-    } else {
-        if (rArmUp.active) {
-            rightArm = @"002";
-        } else {
-            rightArm = @"000";
-        }
-    }
-    
-    if ((eyesL.active && eyesR.active) || (!eyesL.active && !eyesR.active)) {
-        eyes = @"001";
-    } else {
-        if (eyesR.active) {
-            eyes = @"002";
-        } else {
-            eyes = @"000";
-        }
-    }
-    
-    if (led.active) {
-        ledControl = @"001";
-    } else {
-        ledControl = @"000";
-    }
-    */
-    
-    [self schedule:@selector(updateRobot) interval:.3];
-}
-
--(void) updateRobot
-{
-    //SUDP_SendMsg(data, 10);
 }
 
 // on "dealloc" you need to release all your retained objects

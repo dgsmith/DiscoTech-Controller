@@ -32,7 +32,5 @@
 
 +(CCScene *) scene;
 
--(void) updateRobot;
-
 @end
 
